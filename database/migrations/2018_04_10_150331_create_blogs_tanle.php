@@ -16,9 +16,10 @@ class CreateBlogsTanle extends Migration
         //
         Schema::create('blogs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('user_id')->unique();
-            $table->string('body');
+            $table->string('title')->nullable();
+            $table->integer('users_id')->nullable();
+            $table->text('body');
+            $table->integer('categories_id')->nullable();
             $table->timestamps();
         });
     }

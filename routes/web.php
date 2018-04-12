@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('home', 'BlogController@index')->name('home');
+Route::get('home', 'CategoryController@index')->name('home');
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
@@ -29,6 +29,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 //Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 //Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-
+Route::get('/categories/create','CategoryController@create')->name('categories.create');
+Route::post('/categories','CategoryController@store')->name('categories.store');
 
 Route::get('/blogs/create','BlogController@create');
