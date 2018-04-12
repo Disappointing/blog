@@ -25,11 +25,13 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 //Route::post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
-//Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 //Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 //Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/categories/create','CategoryController@create')->name('categories.create');
+Route::get('/categories/{category}','CategoryController@show')->name('categories.show');
 Route::post('/categories','CategoryController@store')->name('categories.store');
 
-Route::get('/blogs/create','BlogController@create');
+Route::get('/blogs/create/{category}','BlogController@create')->name('blogs.create');
+Route::post('/blogs','BlogController@store')->name('blogs.store');

@@ -10,4 +10,9 @@ class Category extends Model
     protected $fillable = [
         'name', 'description','backimg',
     ];
+
+    public function blogs()
+    {
+        return $this->hasmany(Blog::class);
+    }
 }
