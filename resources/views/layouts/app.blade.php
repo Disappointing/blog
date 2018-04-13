@@ -2,27 +2,35 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href='http://fonts.font.im/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/materialize.min.css">
     <link rel="stylesheet" href="/css/app.css">
+    @yield('styles')
     <title>blog</title>
 </head>
+<style>
+    body{background-color: #fafafa}
+</style>
 <body>
     <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Logo</a>
+            <a style="font-family: 'Indie Flower', cursive;" href="{{ route('index') }}" class="brand-logo center">DieDaidai</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="">laravel</a></li>
-                <li><a href="">git</a></li>
-                <li><a href="">vue</a></li>
-                <li><a href="">talk about other</a></li>
+                <li><a href="{{ route('home') }}" >主页</a></li>
+                @Auth
+                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出登录</a></li>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                @endAuth
+
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li><a href="">laravel</a></li>
-                <li><a href="">git</a></li>
-                <li><a href="">vue</a></li>
-                <li><a href="">talk about other</a></li>
+                <a href="{{ route('home') }}" >主页</a>
+
             </ul>
         </div>
     </nav>
@@ -34,5 +42,6 @@
         $(".button-collapse").sideNav();
     });
 </script>
+    @yield('scripts')
 </body>
 </html>

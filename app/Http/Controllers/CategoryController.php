@@ -11,6 +11,10 @@ use App\Handlers\ImageUploadHandler;
 class CategoryController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
 
 
     public function index()

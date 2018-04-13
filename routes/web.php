@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 Route::get('home', 'CategoryController@index')->name('home');
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -34,4 +34,6 @@ Route::get('/categories/{category}','CategoryController@show')->name('categories
 Route::post('/categories','CategoryController@store')->name('categories.store');
 
 Route::get('/blogs/create/{category}','BlogController@create')->name('blogs.create');
+Route::post('upload_img','BlogController@uploadImg')->name('blogs.upload_img');
+Route::get('/blogs/{blog}','BlogController@show')->name('blogs.show');
 Route::post('/blogs','BlogController@store')->name('blogs.store');
