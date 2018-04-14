@@ -6,7 +6,7 @@
             <div class="card white">
                 <div class="card-content white-text">
                     <span class="card-title black-text text-black"><b>{{ $blog->title }}</b></span>
-                    <p class="grey-text "> {{ $blog->created_at->diffForHumans() }}发布
+                    <p class="grey-text "> {{ $blog->created_at->diffForHumans() }}发布,更新于{{ $blog->updated_at->diffForHumans() }}
                         @Auth
                             <a href="{{ route('blogs.edit',$blog->id) }}" class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons">edit</i></a>
                             <a  class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons" onclick="if(confirm('删除是不可恢复的，你确认要删除吗？'))$('#_delform').submit();">close</i></a>
