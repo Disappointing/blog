@@ -34,6 +34,9 @@ Route::get('/categories/{category}','CategoryController@show')->name('categories
 Route::post('/categories','CategoryController@store')->name('categories.store');
 
 Route::get('/blogs/create/{category}','BlogController@create')->name('blogs.create');
+Route::get('/blogs/{blog}/edit','BlogController@edit')->name('blogs.edit');
+Route::put('/blogs/{blog}','BlogController@update')->name('blogs.update');
+Route::delete('/blogs/{blog}','BlogController@delete')->name('blogs.delete');
 Route::post('upload_img','BlogController@uploadImg')->name('blogs.upload_img');
 Route::get('/blogs/{blog}','BlogController@show')->name('blogs.show');
 Route::post('/blogs','BlogController@store')->name('blogs.store');

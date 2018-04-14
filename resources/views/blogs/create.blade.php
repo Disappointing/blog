@@ -5,18 +5,24 @@
 @section('content')
     <div class="row">
         @include('layouts._error')
-        <form class="col s12" method="post" action="{{ route('blogs.store') }}" enctype="multipart/form-data">
-            {{ csrf_field() }}
+        @if($blog->id)
+            <form class="col s12" method="POST" action="{{ route('blogs.update',$blog->id) }}">
+            <input type="hidden" name="_method" value="PUT">
+        @else
+            <form class="col s12" method="post" action="{{ route('blogs.store') }}">
             <input name="category_id" value="{{ $id }}" type="hidden">
+        @endif
+            {{ csrf_field() }}
+
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="title" type="text" class="validate" name="title">
+                    <input id="title" type="text" class="validate" name="title" value="{{ old('title', $blog->title ) }}">
                     <label for="title">标题</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="body" class="materialize-textarea" name="body"></textarea>
+                    <textarea id="body" class="materialize-textarea" name="body">{{ old('title', $blog->body ) }}</textarea>
                 </div>
             </div>
 

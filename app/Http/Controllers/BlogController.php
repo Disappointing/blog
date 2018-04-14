@@ -20,9 +20,9 @@ class BlogController extends Controller
     {
         return view('blogs.index');
     }
-    public function create($id)
+    public function create($id,Blog $blog)
     {
-        return view('blogs.create',compact('id'));
+        return view('blogs.create',compact('id','blog'));
     }
 
     public function store(Request $request,Blog $blog)
@@ -45,8 +45,27 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
-        $blogs=$blog->Category->blogs()->orderBy('created_at', 'desc')->paginate(30);;
+        $blogs=$blog->Category->blogs()->select('title','id')->orderBy('created_at', 'desc')->paginate(30);;
         return view('blogs.show',compact('blog','blogs'));
+    }
+
+    public function edit(Blog $blog)
+    {
+
+        return view('blogs.create',compact('blog'));
+    }
+
+    public function update(Request $request,Blog $blog)
+    {
+        $blog->update($request->all());
+        return redirect()->route('blogs.show',$blog->id);
+    }
+
+    public function delete(Blog $blog)
+    {
+        $category_id=$blog->category_id;
+        $blog->delete();
+        return redirect()->route('categories.show',$category_id);
     }
 
     public function uploadImg(Request $request,ImageUploadHandler $uploader)
