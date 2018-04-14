@@ -48,6 +48,12 @@ class CategoryController extends Controller
         return redirect()->route('home');
     }
 
+    public function delete(Category $category)
+    {
+        $category->delete();
+        return redirect()->route('home');
+    }
+
     public function messages()
     {
 
@@ -55,7 +61,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $blogs = $category->blogs()->orderBy('created_at', 'desc')->paginate(30);
+        $blogs = $category->blogs()->orderBy('created_at', 'asc')->paginate(30);
         return view('categories.show',compact('category','blogs'));
     }
 }

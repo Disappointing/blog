@@ -45,7 +45,7 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
-        $blogs=$blog->Category->blogs()->select('title','id')->orderBy('created_at', 'desc')->paginate(30);;
+        $blogs=$blog->Category->blogs()->select('title','id')->orderBy('created_at', 'asc')->paginate(30);;
         return view('blogs.show',compact('blog','blogs'));
     }
 
