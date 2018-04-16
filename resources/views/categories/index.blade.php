@@ -8,7 +8,6 @@
                         <div class="card-image">
                             <img src="{{ $category->backimg }}">
                             <span class="card-title">{{ $category->name }}</span>
-
                         </div>
                         <div class="card-content">
                             <p>{{ $category->description }}</p>
