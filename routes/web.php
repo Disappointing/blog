@@ -30,6 +30,8 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 //Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/categories/create','CategoryController@create')->name('categories.create');
+Route::get('/categories/{category}/create','CategoryController@edit')->name('categories.edit');
+Route::put('/categories/{category}','CategoryController@update')->name('categories.update');
 Route::delete('/categories/{category}','CategoryController@delete')->name('categories.delete');
 Route::get('/categories/{category}','CategoryController@show')->name('categories.show');
 Route::post('/categories','CategoryController@store')->name('categories.store');
