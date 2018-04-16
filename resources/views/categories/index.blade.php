@@ -17,10 +17,10 @@
                             @auth
                                 <a href="{{ route('blogs.create',$category->id) }}" class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons">add</i></a>
                                 <a href="{{ route('categories.edit',$category->id) }}" class="btn-floating halfway-fab waves-effect waves-light yellow"><i class="material-icons">edit</i></a>
-                                <a  class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons" onclick="if(confirm('删除是不可恢复的，你确认要删除吗？'))$('#_delform').submit();">close</i></a>
-                                <form action="{{ route('categories.delete',$category->id) }}"  method="post" id="_delform">
+                                <form style="display: inline" action="{{ route('categories.delete',$category->id) }}"  method="post" id="_delform">
                                     <input type="hidden" name="_method" value="DELETE">
                                     {{ csrf_field() }}
+                                    <button  type="submit" class="btn-floating halfway-fab waves-effect waves-light red" onclick="if(!confirm('你确认删除吗,此操作不可逆')) return false"><i class="material-icons">close</i></button>
                                 </form>
 
                             @endauth
