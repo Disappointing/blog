@@ -26,8 +26,8 @@
         <div class="col s12 l2 card white">
             <div class="collection">
 
-                @foreach($blogs as $blog)
-                    <a href="{{ route('blogs.show',$blog->id) }}" class="collection-item">{{ $blog->title }}</a>
+                @foreach($blogs as $blog_title)
+                    <a href="{{ route('blogs.show',$blog_title->id) }}" class="collection-item">{{ $blog_title->title }}</a>
 
                 @endforeach
             </div>
