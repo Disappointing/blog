@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use App\Models\Reply;
 use App\Handlers\ImageUploadHandler;
 use Auth;
 
@@ -45,8 +46,9 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
-        $blogs=$blog->Category->blogs()->select('title','id')->orderBy('created_at', 'asc')->paginate(30);;
-        return view('blogs.show',compact('blog','blogs'));
+        $blogs=$blog->Category->blogs()->select('title','id')->orderBy('created_at', 'asc')->paginate(30);
+        $replies=$blog->replies()->where('pid','=',0)->orderBy('created_at', 'desc')->paginate(10);
+        return view('blogs.show',compact('blog','blogs','replies'));
     }
 
     public function edit(Blog $blog)
@@ -90,5 +92,26 @@ class BlogController extends Controller
         }
 
         return $data;
+    }
+
+    public function reply_store(Request $request, Reply $reply)
+    {
+        $this->validate($request,[
+            'content' => 'required|min:3|max:300',
+            'email' => 'required|email',
+        ]);
+        $data = $request->all();
+        $reply->fill($data);
+        $reply->save();
+
+        return redirect()->route('blogs.show',$data['blog_id']);
+
+    }
+
+    public function reply_delete(Reply $reply)
+    {
+        $id=$reply->blog_id;
+        $reply->delete();
+        return redirect('/blogs/'.$id.'#replyList');
     }
 }

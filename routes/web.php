@@ -43,3 +43,6 @@ Route::delete('/blogs/{blog}','BlogController@delete')->name('blogs.delete');
 Route::post('upload_img','BlogController@uploadImg')->name('blogs.upload_img');
 Route::get('/blogs/{blog}','BlogController@show')->name('blogs.show');
 Route::post('/blogs','BlogController@store')->name('blogs.store');
+
+Route::post('/blogs/reply','BlogController@reply_store')->name('blogs.reply');
+Route::delete('/blogs/reply/{reply}','BlogController@reply_delete')->name('blogs.reply_delete');
