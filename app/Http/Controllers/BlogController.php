@@ -99,6 +99,9 @@ class BlogController extends Controller
         $this->validate($request,[
             'content' => 'required|min:3|max:300',
             'email' => 'required|email',
+            'captcha' => 'required|captcha',
+        ],[
+          'captcha.captcha'  => '验证码错误~~~~'
         ]);
         $data = $request->all();
         $reply->fill($data);

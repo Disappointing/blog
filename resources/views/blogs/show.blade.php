@@ -100,16 +100,29 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">email</i>
-                    <input  id="email" type="email" class="validate" name="email">
+                    <input  id="email" type="email" class="validate" name="email" value="{{ old('email') }}">
                     <label for="disabled">e-mail</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">mode_edit</i>
-                    <textarea name="content" class="materialize-textarea" placeholder="请勿发布不友善或者负能量的内容。与人为善，比聪明更重要！"></textarea>
+                    <textarea name="content" class="materialize-textarea" placeholder="请勿发布不友善或者负能量的内容。与人为善，比聪明更重要！">{{ old('content') }}</textarea>
                 </div>
             </div>
+            <div class="row">
+
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">email</i>
+                    <input id="validate" class="validate" name="captcha" type="text">
+                    <label for="validate">验证码</label>
+                </div>
+                <div class="input-field col s6">
+                    <img class="thumbnail captcha" src="{{ captcha_src('flat') }}" onclick="this.src='/captcha/flat?'+Math.random()" title="点击图片重新获取验证码">
+                </div>
+            </div>
+
+
             <div class="right-align">
                 <button type="submit" class="btn waves-effect waves-light">提交
                     <i class="material-icons right">send</i></button>
@@ -138,6 +151,17 @@
                     <textarea name="content" class="materialize-textarea" placeholder="请勿发布不友善或者负能量的内容。与人为善，比聪明更重要！"></textarea>
                 </div>
             </div>
+            <div class="row">
+
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">email</i>
+                    <input id="validate" class="validate" name="captcha" type="text">
+                    <label for="validate">验证码</label>
+                </div>
+                <div class="input-field col s6">
+                    <img class="thumbnail captcha" src="{{ captcha_src('flat') }}" onclick="this.src='/captcha/flat?'+Math.random()" title="点击图片重新获取验证码">
+                </div>
+            </div>
             <div class="right-align">
                 <button type="submit" class="btn waves-effect waves-light">提交
                     <i class="material-icons right">send</i></button>
@@ -160,8 +184,14 @@
                 $(tmp).parent().parent().parent().find("div").remove();
                 $('#pid').val(id);
                 $(tmp).parent().parent().append($("#reply").html());
-
-
             }
+
+            @if (count($errors) > 0)
+                    @foreach($errors->all() as $error)
+                        Materialize.toast('{{ $error }}', 4000);
+                    @endforeach
+
+            @endif
+
     </script>
 @endsection

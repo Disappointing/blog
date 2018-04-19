@@ -178,6 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         //数据库备份
         Spatie\Backup\BackupServiceProvider::class,
+        //验证码
+        Mews\Captcha\CaptchaServiceProvider::class,
 
     ],
 
@@ -227,6 +229,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        //验证码
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ],
 
