@@ -17,10 +17,10 @@
                            <span><i style="position: relative;top: 6px;" class="material-icons">av_timer</i><b >{{ $category->created_at->diffForHumans() }}</b></span>
                             @auth
                             <!-- Dropdown Trigger -->
-                            <a style="float: right" class='dropdown-button   waves-effect waves-light btn-flat' href='#' data-activates='dropdown1'><i class="material-icons">settings</i></a>
+                            <a style="float: right" class='dropdown-button   waves-effect waves-light btn-flat' href='#' data-activates='dropdown{{ $category->id }}'><i class="material-icons">settings</i></a>
 
                             <!-- Dropdown Structure -->
-                            <ul id='dropdown1' class='dropdown-content'>
+                            <ul id='dropdown{{ $category->id }}' class='dropdown-content'>
                                 <li><a href="{{ route('blogs.create',$category->id) }}">添加</a></li>
                                 <li><a href="{{ route('blogs.edit',$category->id) }}">编辑</a></li>
                                 <li class="divider"></li>
