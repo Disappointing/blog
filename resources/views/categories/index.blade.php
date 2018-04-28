@@ -22,7 +22,7 @@
                             <!-- Dropdown Structure -->
                             <ul id='dropdown{{ $category->id }}' class='dropdown-content'>
                                 <li><a href="{{ route('blogs.create',$category->id) }}">添加</a></li>
-                                <li><a href="{{ route('blogs.edit',$category->id) }}">编辑</a></li>
+                                <li><a href="{{ route('categories.edit',$category->id) }}">编辑</a></li>
                                 <li class="divider"></li>
                                 <form style="display: inline" action="{{ route('categories.delete',$category->id) }}"  method="post" id="_delform">
                                     <input type="hidden" name="_method" value="DELETE">
