@@ -6,7 +6,6 @@
      @foreach($blogs as $blog)
          <a href="{{ route('blogs.show',$blog->id) }}" class="collection-item">{{ $blog->title }}</a>
 
-
      @endforeach
             </div>
         </div>
