@@ -2,17 +2,22 @@
 @section('content')
     <div class="row">
         @include('layouts._error')
-        <form class="col s12" method="post" action="{{ route('categories.store') }}" enctype="multipart/form-data">
+        @if($category->id)
+            <form class="col s12" method="post" action="{{ route('categories.update',$category->id) }}" enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="PUT">
+        @else
+            <form class="col s12" method="post" action="{{ route('categories.store') }}" enctype="multipart/form-data">
+        @endif
             {{ csrf_field() }}
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="name" type="text" class="validate" name="name">
+                    <input id="name" type="text" class="validate" name="name" value="{{ old('name',$category->name) }}">
                     <label for="name">名称</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="description" class="materialize-textarea" name="description"></textarea>
+                    <textarea id="description" class="materialize-textarea" name="description">{{ old('name',$category->description) }}</textarea>
                     <label for="description">描述</label>
                 </div>
             </div>
