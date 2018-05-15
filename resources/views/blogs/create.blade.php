@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
 @stop
 @section('content')
-    <div class="row">
+    <div class="row grey lighten-5 z-depth-1">
         @include('layouts._error')
         @if($blog->id)
             <form class="col s12" method="POST" action="{{ route('blogs.update',$blog->id) }}">
@@ -46,6 +46,7 @@
         $(document).ready(function(){
             var editor = new Simditor({
                 textarea: $('#body'),
+                toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'],
                 upload: {
                     url: '{{ route('blogs.upload_img') }}',
                     params:{ _token: '{{ csrf_token() }}' },

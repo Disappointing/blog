@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $data = $request->all();
         if ($request->backimg)
         {
-            $result = $uploader->save($request->backimg, 'backimg',400);
+            $result = $uploader->save($request->backimg, 'backimg',970);
             $data['backimg'] = $result['path'];
         }
         $category->update($data);

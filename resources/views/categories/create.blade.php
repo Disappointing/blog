@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="row">
+    <div class="row grey lighten-5 z-depth-1">
         @include('layouts._error')
         @if($category->id)
             <form class="col s12" method="post" action="{{ route('categories.update',$category->id) }}" enctype="multipart/form-data">

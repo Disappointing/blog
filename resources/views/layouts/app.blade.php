@@ -9,6 +9,30 @@
     @yield('styles')
     <title>blog</title>
 </head>
+<style>
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        background-size: cover;
+        background-attachment: fixed;
+        content: '';
+        will-change: transform;
+        z-index: -1;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background-image: url('');
+
+    }
+
+
+    body::before {
+
+    }
+    .content{min-height: 720px;margin-top: 100px;}
+</style>
 <body>
 @Auth
     <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出登录</a></li>
@@ -17,12 +41,14 @@
         {{ csrf_field() }}
     </form>
 @endAuth
+<div class="content">
 @yield('content')
+</div>
 <footer class="page-footer white grey-text">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 style="font-family: 'Indie Flower', cursive;" href="{{ route('index') }}" class="">by DieDaiDai</h5>
+                <h5 style="font-family: 'Indie Flower', cursive;" class=""><a  href="{{ route('home') }}">by DieDaiDai</a></h5>
                 <p class="text-lighten-4">~</p>
             </div>
         </div>
@@ -33,7 +59,12 @@
 <script>
     $(document).ready(function(){
         $(".button-collapse").sideNav();
+        var date = new Date();
+        var mon_day = date.getMonth() + 1 + '_' + date.getDate();
+        $('body').css('background-image',"url('https://img.infinitynewtab.com/InfinityWallpaper/" + mon_day + ".jpg')");
     });
+
+
 </script>
     @yield('scripts')
 </body>
